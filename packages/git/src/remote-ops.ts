@@ -150,6 +150,12 @@ export class RemoteOps {
       ]);
       const sha = (await git(this.repoPath, ["rev-parse", "HEAD"])).stdout.trim();
       return sha;
+    } catch (err) {
+      // A conflicting merge leaves MERGE_HEAD and a conflicted index behind,
+      // which blocks any later checkout/operation. Abort it so the base repo
+      // is returned to a clean state before we rethrow and restore the branch.
+      await git(this.repoPath, ["merge", "--abort"], { allowFailure: true });
+      throw err;
     } finally {
       // Restore prior branch when it differs and still exists.
       if (cur && cur !== args.base && cur !== "HEAD") {

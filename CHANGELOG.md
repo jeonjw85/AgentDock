@@ -64,6 +64,8 @@ multiple AI coding agents across isolated git worktrees.
   GitHub CLI exists but fails (e.g. auth), preserving the "never throw" contract.
 - `Orchestrator` selects a task's latest workspace deterministically when
   timestamps collide.
+- `RemoteOps.mergeBranch` aborts a conflicting merge instead of leaving the base
+  repository in a dirty, conflicted state.
 
 ### Notes
 - Ships with mock adapters so the full pipeline runs offline with no external

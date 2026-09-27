@@ -85,4 +85,35 @@ describe("RemoteOps", () => {
     const after = (await git(repo, ["rev-parse", "--abbrev-ref", "HEAD"])).stdout.trim();
     expect(after).toBe(before);
   });
+
+  it("aborts a conflicting merge and leaves the repo clean on the original branch", async () => {
+    const wt = new WorktreeManager(repo);
+    const handle = await wt.create("task-conflict");
+    // Task branch edits README.md.
+    await fs.writeFile(path.join(handle.path, "README.md"), "# demo\nfrom task branch\n");
+    await wt.commitAll(handle.path, "task edit");
+    await wt.remove(handle.path, { force: true });
+
+    // Base branch edits the SAME lines differently, guaranteeing a conflict.
+    await fs.writeFile(path.join(repo, "README.md"), "# demo\nfrom base branch\n");
+    await git(repo, ["commit", "-am", "base edit"]);
+
+    const before = (await git(repo, ["rev-parse", "--abbrev-ref", "HEAD"])).stdout.trim();
+    const remote = new RemoteOps(repo);
+
+    await expect(
+      remote.mergeBranch({ branch: handle.branch, base: "main" }),
+    ).rejects.toBeTruthy();
+
+    // The repo must be clean (no in-progress merge) and on the original branch.
+    const status = await git(repo, ["status", "--porcelain"]);
+    expect(status.stdout.trim()).toBe("");
+    const after = (await git(repo, ["rev-parse", "--abbrev-ref", "HEAD"])).stdout.trim();
+    expect(after).toBe(before);
+    // No MERGE_HEAD should remain.
+    const mergeHead = await git(repo, ["rev-parse", "--verify", "MERGE_HEAD"], {
+      allowFailure: true,
+    });
+    expect(mergeHead.code).not.toBe(0);
+  });
 });
