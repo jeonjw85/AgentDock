@@ -1,5 +1,13 @@
 packages:
   - "packages/*"
 
-onlyBuiltDependencies:
+allowBuilds:
+  esbuild: set this to true or false
+
+# esbuild ships prebuilt platform binaries via optionalDependencies, so its
+# postinstall build script is not needed. Mark it ignored and keep pnpm from
+# treating an ignored build script as a fatal error in clean CI.
+ignoredBuiltDependencies:
   - esbuild
+strictDepBuilds: false
+verifyDepsBeforeRun: false
