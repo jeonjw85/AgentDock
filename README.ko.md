@@ -32,10 +32,10 @@ AgentDock은 Claude Code, Codex, Kiro, OpenCode, Gemini를 대체하지 않습�
 
 이제 대부분의 개발자가 코딩 에이전트를 매일 쓰고, 여러 개를 한 번에 쓰는 경우도 많습니다. 문제는 에이전트마다 git, 터미널, 컨텍스트, 작업, 권한을 각자 따로 관리한다는 점입니다. 공통의 제어 계층이 없습니다. AgentDock이 그 제어 계층입니다.
 
-- 하나의 작업 그래프를 여러 에이전트(플래너, 워커, 리뷰어)로 나눕니다.
-- 격리가 기본입니다. 모든 작업은 자기 브랜치와 자기 worktree에서 돌기 때문에 에이전트끼리 서로의 결과를 덮어쓰지 않습니다.
-- 관측을 한곳에서 합니다. 세션, 토큰 사용량, 비용, 도구 호출, diff가 모두 하나의 이벤트 버스를 통해 흐릅니다.
-- 어댑터로 확장합니다. 작은 인터페이스 하나만 구현하면 어떤 CLI 코딩 에이전트든 연결됩니다.
+- 하나의 작업 그래프를 플래너, 워커, 리뷰어 같은 여러 에이전트로 나눠서 맡깁니다.
+- 모든 작업이 자기 브랜치와 자기 worktree에서 돌기 때문에 에이전트끼리 서로의 결과를 덮어쓸 일이 없습니다.
+- 세션, 토큰 사용량, 비용, 도구 호출, diff가 모두 하나의 이벤트 버스를 통해 흐르므로 한곳에서 지켜볼 수 있습니다.
+- 작은 인터페이스 하나만 구현하면 어떤 CLI 코딩 에이전트든 어댑터로 붙일 수 있습니다.
 
 ## 빠른 시작
 
@@ -87,12 +87,12 @@ repo/
 
 | 패키지 | 역할 |
 |---|---|
-| `@agentdock/core` | 도메인 모델, 이벤트 버스, 교체 가능한 저장소(`Store`). |
-| `@agentdock/git` | worktree 생명주기, diff 추적, 커밋 도우미. |
-| `@agentdock/adapters` | `AgentAdapter` 규약, 레지스트리, 기본 mock 및 범용 CLI 어댑터. |
-| `@agentdock/runtime` | 실행 백엔드: `LocalRuntime`과 `DockerRuntime`(샌드박스). |
-| `@agentdock/orchestrator` | DAG 스케줄러, 플래너, 재시도, 오케스트레이션 엔진. |
-| `@agentdock/cli` | `agentdock` 명령어. |
+| `@agentdock/core` | 도메인 모델, 이벤트 버스, 교체 가능한 저장소(`Store`) |
+| `@agentdock/git` | worktree 생명주기, diff 추적, 커밋 도우미 |
+| `@agentdock/adapters` | `AgentAdapter` 규약, 레지스트리, 기본 mock 및 범용 CLI 어댑터 |
+| `@agentdock/runtime` | 실행 백엔드: `LocalRuntime`과 `DockerRuntime`(샌드박스) |
+| `@agentdock/orchestrator` | DAG 스케줄러, 플래너, 재시도, 오케스트레이션 엔진 |
+| `@agentdock/cli` | `agentdock` 명령어 |
 
 ## 명령어
 
@@ -155,11 +155,11 @@ AgentDock은 초기 기반 단계입니다. 지금 동작하는 것: 작업 분�
 
 로드맵:
 
-- Codex, OpenCode, Gemini를 위한 정식 어댑터.
-- 이벤트 버스를 읽는 실시간 TUI 또는 웹 대시보드.
-- 더 큰 환경을 위한 SQLite 및 Postgres `Store` 백엔드.
-- 체크포인트와 재개 가능한 실행.
-- MCP 도구 지원.
+- Codex, OpenCode, Gemini를 위한 정식 어댑터
+- 이벤트 버스를 읽는 실시간 TUI 또는 웹 대시보드
+- 더 큰 환경을 위한 SQLite 및 Postgres `Store` 백엔드
+- 체크포인트와 재개 가능한 실행
+- MCP 도구 지원
 
 ## 라이선스
 
