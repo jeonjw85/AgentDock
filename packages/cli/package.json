@@ -1,0 +1,22 @@
+{
+  "name": "@agentdock/cli",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "agentdock": "./dist/bin.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -b",
+    "typecheck": "tsc --noEmit",
+    "start": "node ./dist/bin.js"
+  },
+  "dependencies": {
+    "@agentdock/core": "workspace:*",
+    "@agentdock/git": "workspace:*",
+    "@agentdock/adapters": "workspace:*",
+    "@agentdock/runtime": "workspace:*",
+    "@agentdock/orchestrator": "workspace:*"
+  }
+}
