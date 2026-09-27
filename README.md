@@ -1,5 +1,8 @@
 # AgentDock
 
+[![CI](https://github.com/jeonjw85/AgentDock/actions/workflows/ci.yml/badge.svg)](https://github.com/jeonjw85/AgentDock/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 An open-source runtime for orchestrating multiple AI coding agents across isolated git worktrees.
 
 [한국어 문서](README.ko.md)

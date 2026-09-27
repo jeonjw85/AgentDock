@@ -1,5 +1,8 @@
 # AgentDock
 
+[![CI](https://github.com/jeonjw85/AgentDock/actions/workflows/ci.yml/badge.svg)](https://github.com/jeonjw85/AgentDock/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 여러 AI 코딩 에이전트를 격리된 git worktree 위에서 함께 돌리기 위한 오픈소스 실행 환경입니다.
 
 [English](README.md)
