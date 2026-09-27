@@ -68,7 +68,7 @@ multiple AI coding agents across isolated git worktrees.
 ### Notes
 - Ships with mock adapters so the full pipeline runs offline with no external
   agent installed.
-- Requires Node.js 20 or newer and git. Optional: Docker (sandbox runtime),
+- Requires Node.js 22.13 or newer and git. Optional: Docker (sandbox runtime),
   GitHub CLI `gh` (pull requests).
 
 [0.1.0]: https://github.com/your-org/agentdock/releases/tag/v0.1.0

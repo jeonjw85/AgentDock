@@ -39,7 +39,7 @@ Most developers now use coding agents daily, and often more than one at a time. 
 
 ## Quickstart
 
-You need Node.js 20 or newer and git.
+You need Node.js 22.13 or newer and git.
 
 ```bash
 # from the AgentDock repo

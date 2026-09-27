@@ -104,7 +104,8 @@ one is in use.
 The default `FileStore` writes a single JSON snapshot atomically (temp file plus
 rename) after every mutation, with writes serialized through a promise chain so
 concurrent mutations never interleave a half-written file. It has zero native
-dependencies, so AgentDock installs on any Node 20 or newer without a build step.
+dependencies, so AgentDock installs on any Node 22.13 or newer without a build
+step.
 For larger deployments, implement `Store` against SQLite or Postgres. The
 interface is small and the orchestrator depends only on it.
 

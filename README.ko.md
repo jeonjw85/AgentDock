@@ -39,7 +39,7 @@ AgentDock은 Claude Code, Codex, Kiro, OpenCode, Gemini를 대체하지 않습�
 
 ## 빠른 시작
 
-Node.js 20 이상과 git이 필요합니다.
+Node.js 22.13 이상과 git이 필요합니다.
 
 ```bash
 # AgentDock 저장소에서
