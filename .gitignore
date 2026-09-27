@@ -1,0 +1,13 @@
+node_modules/
+dist/
+*.tsbuildinfo
+coverage/
+.DS_Store
+*.log
+
+# AgentDock runtime data
+.agentdock/
+.worktrees/
+*.sqlite
+*.sqlite-journal
+*.db
